@@ -24,10 +24,10 @@ const reducer = (state = initialState, action) => {
     case Action.sub_counter:
       return {...state, counter: state.counter - action.val}
     case Action.store_result:
-      return {...state, results: [...state.results, state.counter]}
+      return {...state,
+        results: [...state.results, {id: new Date().getMilliseconds(), value: state.counter}]}
     case Action.delete_result:
-      let newRes = [...state.results]
-      return {...state, results: newRes.slice(0, newRes.length -1)}
+      return {...state, results: state.results.filter(el => el.id !== action.id)}
     default:
       break
   }
