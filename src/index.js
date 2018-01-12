@@ -4,6 +4,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import counterReducer from './Store/Reducers/Counter'
 import resultReducer from './Store/Reducers/Result'
+import thunk from 'redux-thunk'
 
 import './index.css';
 import App from './App';
@@ -31,7 +32,7 @@ const logger = store => {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const enhancer = composeEnhancers( applyMiddleware( logger ) )
+const enhancer = composeEnhancers( applyMiddleware( logger, thunk ) )
 
 const store = createStore( rootReducer, enhancer )
 
