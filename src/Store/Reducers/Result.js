@@ -1,4 +1,4 @@
-import { Action } from '../actions/Action'
+import ActionType from '../actions/ActionType'
 
 const initialState = {
   results: []
@@ -6,12 +6,12 @@ const initialState = {
 
 const reducer = ( state = initialState, action ) => {
   switch ( action.type ) {
-    case Action.store_result:
+    case ActionType.store_result:
       return {
         ...state,
         results: [...state.results, { id: new Date().getMilliseconds(), value: action.result }]
       }
-    case Action.delete_result:
+    case ActionType.delete_result:
       return { ...state, results: state.results.filter( el => el.id !== action.id ) }
     default:
       break
