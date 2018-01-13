@@ -1,6 +1,9 @@
 import ActionType from '../actions/ActionType'
 
 export const saveResult = result => {
+  
+  result *= 2
+  
   return {
     type: ActionType.store_result,
     result

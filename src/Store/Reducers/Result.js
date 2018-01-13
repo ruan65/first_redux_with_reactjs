@@ -1,4 +1,5 @@
 import ActionType from '../actions/ActionType'
+import { updateObject } from '../utility'
 
 const initialState = {
   results: []
@@ -7,12 +8,17 @@ const initialState = {
 const reducer = ( state = initialState, action ) => {
   switch ( action.type ) {
     case ActionType.store_result:
-      return {
-        ...state,
-        results: [...state.results, { id: new Date().getMilliseconds(), value: action.result }]
-      }
+      return updateObject( state,
+        {
+          results: [...state.results,
+            {
+              id: new Date().getMilliseconds(),
+              value: action.result
+            }]
+        } )
+    
     case ActionType.delete_result:
-      return { ...state, results: state.results.filter( el => el.id !== action.id ) }
+      return updateObject( state, { results: state.results.filter( el => el.id !== action.id ) } )
     default:
       break
   }
